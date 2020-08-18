@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>works</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-segment (ionChange)="changeFilter($event.detail.value)">
+    <ion-segment-button value="all">
+      <ion-label>All</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="checked">
+      <ion-label>Done</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="unchecked">
+      <ion-label>New</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let work of filteredWorks"> <!-- Add filterPipe "works | filter(all|checked|unchecked)" -->
+      <ion-item>
+        <ion-label>{{ work.title }}</ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="check(work.id)">
+          <ion-icon name="arrow-down-outline"></ion-icon>
+        </ion-item-option>
+        <ion-item-option (click)="assesment(work.id)">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
